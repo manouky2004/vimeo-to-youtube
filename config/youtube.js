@@ -1,13 +1,18 @@
+
 const path = require('path')
-const { getConfigHome } = require('platform-folders')
+const os = require('os')
 
-const requiredKeys = ['YOUTUBE_CLIENT_ID', 'YOUTUBE_CLIENT_SECRET', 'YOUTUBE_PROJECT_ID']
+// Only enforce YouTube API keys if upload/YouTube features are enabled
+const youtubeFeatureEnabled = false; // Set to true if you want to require YouTube keys
 
-requiredKeys.forEach((key) => {
-  if (!process.env[key]) {
-    throw new Error(`Please provide the required API key '${key}'`)
-  }
-})
+if (youtubeFeatureEnabled) {
+  const requiredKeys = ['YOUTUBE_CLIENT_ID', 'YOUTUBE_CLIENT_SECRET', 'YOUTUBE_PROJECT_ID']
+  requiredKeys.forEach((key) => {
+    if (!process.env[key]) {
+      throw new Error(`Please provide the required API key '${key}'`)
+    }
+  })
+}
 
 module.exports = {
   installed: {
@@ -23,5 +28,5 @@ module.exports = {
   },
   tokenPath: typeof process.env.YOUTUBE_TOKEN_PATH === 'string' && process.env.YOUTUBE_TOKEN_PATH
     ? path.resolve(__dirname, process.env.YOUTUBE_TOKEN_PATH)
-    : path.resolve(getConfigHome(), 'vimeo-to-youtube', 'youtube-oauth2-credentials.json')
+    : path.join(os.homedir(), 'vimeo-to-youtube', 'youtube-oauth2-credentials.json')
 }

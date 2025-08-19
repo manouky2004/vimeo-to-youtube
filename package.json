@@ -50,7 +50,6 @@
     "listr": "^0.14.3",
     "nedb": "^1.8.0",
     "ora": "^3.4.0",
-    "platform-folders": "^0.2.7",
     "prettysize": "^1.1.0",
     "rxjs": "^6.5.2",
     "sugar": "^2.0.6",
