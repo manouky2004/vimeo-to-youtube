@@ -39,6 +39,9 @@ jspm_packages/
 # TypeScript v1 declaration files
 typings/
 
+# Local environment variables
+.env
+
 # Optional npm cache directory
 .npm
 
